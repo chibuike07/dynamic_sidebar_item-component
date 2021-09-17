@@ -8,7 +8,8 @@ const Main = ({ location }) => {
 
   useEffect(() => {
     // declared a query variable
-    let query;
+    let query,
+      subscribe = true;
 
     // get the text after the equalto symbol
     const itemToDisplay = location?.search.split("=")[1];
@@ -19,17 +20,21 @@ const Main = ({ location }) => {
     // added conditional rendering of the views
     switch (query.toLowerCase()) {
       case "view one":
-        setSideBarViews(<ViewOne />);
+        subscribe && setSideBarViews(<ViewOne />);
         break;
 
       case "view two":
-        setSideBarViews(<ViewTwo />);
+        subscribe && setSideBarViews(<ViewTwo />);
         break;
 
       default:
         <ViewOne />;
         break;
     }
+
+    return () => {
+      subscribe = false;
+    };
   }, [location?.search]);
   return (
     <div
