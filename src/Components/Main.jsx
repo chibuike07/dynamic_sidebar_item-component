@@ -15,7 +15,7 @@ const Main = ({ location }) => {
     const itemToDisplay = location?.search.split("=")[1];
 
     // check if the text has a symbol demarcating the space and replace it with a space
-    query = itemToDisplay.replaceAll("%20", " ");
+    query = itemToDisplay.replaceAll("%20", " ") || "";
 
     // added conditional rendering of the views
     switch (query.toLowerCase()) {
